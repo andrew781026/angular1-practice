@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查牌價系統-上傳EXCEL</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script>
+        var uploadApp = angular.module('duplicateShow',[]);
+        uploadApp.controller('MainCtrl',[function () {
+            var self = this ;
+            self.products=[
+                {name:"FRH-38H-10",id:"A0010080030",rowIndex:"33",price:{type:"工廠價",price:750,date:"20170801"},type:"對照光纖",comment:""},
+                {name:"FT-0813-67",id:"A0020020412",rowIndex:"86",price:{type:"工廠價",price:15000,date:"20170509"},type:"對照光纖",comment:"塑膠光纖+蛇管"},
+                {name:"RMF-20NK",id:"A0030040090",rowIndex:"102",price:{type:"工廠價",price:610,date:"20171022"},type:"光電",comment:"201211月 10pcs 156.1 min(需聚焦, 製作較慢)"}
+            ];
+        }]);
+    </script>
+</head>
+<body ng-app="duplicateShow">
+
+    <h1>第3階段 - Duplicate Data</h1>
+
+    <br/><br/>
+    <div ng-controller="MainCtrl as ctrl">
+        <table class="pure-table">
+            <thead>
+                <tr>
+                    <td>Excel行數</td>
+                    <td>品號</td>
+                    <td>品名</td>
+                    <td>價格種類</td>
+                    <td>價格日期</td>
+                    <td>價格</td>
+                    <td>產品類型</td>
+                    <td>註解</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in ctrl.products">
+                    <td>{{product.rowIndex}}</td>
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price.type}}</td>
+                    <td>{{product.price.date}}</td>
+                    <td>{{product.price.price}}</td>
+                    <td>{{product.type}}</td>
+                    <td>{{product.comment}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br/><br/>
+        <button class="pure-button pure-button-primary">下載csv</button>
+        <button class="pure-button pure-button-primary">回到上傳EXCEL</button>
+    </div>
+
+
+</body>
+</html>

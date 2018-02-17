@@ -1,0 +1,20 @@
+<div ng-app="chooseSheet">
+    <h1>第2階段 - 選擇資料sheet</h1>
+
+    <br/>
+
+    <div style="background-color: #ff51e5" >
+        <!-- action="./chooseSheet.do" -->
+        <form ng-submit="$ctrl.submit()" method="post" >
+            請選擇資料在那些sheet上(可多選):<br/>
+            <div ng-repeat="sheet in $ctrl.sheets">
+                <input type="checkbox" name="sheetName" ng-model="sheet.selected"
+                       ng-click="$ctrl.myLog()"/>{{sheet.name}}<br/>
+            </div>
+            {{ $ctrl.sheets | filter:{selected:true} }}
+            <input type="submit" value="下一步" name="submit"/>
+        </form>
+
+    </div>
+
+</div>

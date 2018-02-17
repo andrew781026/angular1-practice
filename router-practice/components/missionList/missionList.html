@@ -1,0 +1,39 @@
+
+<div>
+
+
+    <h1>Mission List</h1>
+
+    <br/><br/>
+    <div >
+        <table datatable="ng" class="row-border hover">
+            <thead>
+            <tr>
+                <td>Excel行數</td>
+                <td>品號</td>
+                <td>品名</td>
+                <td>價格種類</td>
+                <td>價格日期</td>
+                <td>價格</td>
+                <td>產品類型</td>
+                <td>註解</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in $ctrl.products">
+                <td>{{product.rowIndex}}</td>
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.price.type}}</td>
+                <td ng-bind="product.price.date| date : 'yyyy-MM-dd HH:mm' "></td>
+                <td ng-bind="product.price.price|currency:'NT$  '"></td>
+                <td>{{product.type}}</td>
+                <td>{{product.comment}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br/><br/>
+
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>產品牌價歷史紀錄</title>
+
+    <!-- bootstrap 相關的 css  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" >
+    <!-- pure css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" >
+
+
+    <!--  <base href="/">  -->
+
+    <!-- jQuery cdn  -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+
+    <!-- jQuery-DataTable cdn  -->
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <!-- angularJS  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+
+
+    <!-- angularJS-ngResource  -->
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.9/angular-resource.min.js"></script>
+
+    <!-- angularJS-dataTable  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.2/angular-datatables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.2/css/angular-datatables.css" />
+
+
+
+    <!-- 使用動態的 base href , 以免 base href 不是指向根目錄 -->
+    <script type="text/javascript">
+        console.log('base href = ','<base href="' + window.location.pathname + '" />');
+        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
+
+    <script src="./js/app.js"></script>
+    <script src="./components/upload/uploadApp.js"></script>
+    <script src="./components/chooseSheet/chooseSheet.js"></script>
+    <script src="./components/getProduct/get.js"></script>
+    <script src="./components/duplicate/duplicate.js"></script>
+    <script src="./components/missionList/missionList.js"></script>
+</head>
+<body ng-app="app">
+
+    <h1 class="title">產品牌價歷史紀錄</h1>
+    <div style="background-color: #df4854" >
+        <button class="btn btn-primary">First</button>
+        <button class="btn btn-primary">Second</button>
+        <button class="btn btn-primary">Third</button>
+    </div>
+    <app></app>
+
+    <!-- Load up the router library - normally you might use npm/yarn and host it locally -->
+    <script src="https://unpkg.com/@angular/router@0.2.0/angular1/angular_1_router.js"></script>
+
+    <!-- bootstrap 相關的 js  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" ></script>
+</body>
+</html>

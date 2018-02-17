@@ -1,0 +1,49 @@
+<div > <!-- ng-app="getApp" ng-controller="getController as sCtrl " -->
+
+    <link rel="stylesheet" href="./components/getProduct/get.css" >
+
+
+
+
+    <div class="form-container">
+
+        <h3 class="sub_title">查詢產品歷史價格</h3>
+
+        <label class="label" for="qryDate">日期</label>
+        <input class="form-container-3" type="date" id="qryDate" name="qryDate" value="2017-09-18"><br/>
+
+        <label class="label" for="productID">品號</label>
+        <!-- 下拉選單 -->
+        <input disabled class="form-container-3" type="text" id="productID" name="productID" placeholder="請輸入品號" ng-model="$ctrl.product.id"><br/>
+
+        <label class="label" for="productName">品名</label>
+        <!-- 下拉選單 -->
+        <input disabled class="form-container-3" readonly type="text" id="productName" name="productName" placeholder="請輸入品名" ng-model="$ctrl.product.name" ><br/>
+
+        <label class="label" for="product">產品</label>
+        <select class="form-container-3" id="product" name="product"
+                ng-options="(product.id+' | '+product.name) for product in $ctrl.products track by product.id"
+                ng-model="$ctrl.product">
+        </select><br/>
+
+        <div class="form-container-2">
+            <h3>價目表</h3>
+            <ul>
+                <li>工廠價 &nbsp;&nbsp;
+                    <span ng-bind="$ctrl.product.price|currency:'NT$  '"  ng-hide="$ctrl.editState">100</span>
+                    <input type="number" ng-model="$ctrl.product.price" ng-show="$ctrl.editState" />
+                    <button ng-hide="$ctrl.editState" ng-click="$ctrl.editPrice()" >修改價格</button>
+                    <button ng-show="$ctrl.editState" ng-click="$ctrl.confirmPrice()" >確定價格</button>
+                </li><br>
+                定價一 &nbsp;&nbsp;<span ng-bind="$ctrl.product.price*0.9" >90</span><br><br>
+                定價二 &nbsp;&nbsp;<span ng-bind="$ctrl.product.price*0.8" >80</span><br><br>
+                定價三 &nbsp;&nbsp;<span ng-bind="$ctrl.product.price*0.7" >70</span><br><br>
+                定價四 &nbsp;&nbsp;<span ng-bind="$ctrl.product.price*0.6" >60</span><br><br>
+                定價五 &nbsp;&nbsp;<span ng-bind="$ctrl.product.price*0.5" >50</span>
+            </ul>
+        </div><br>
+
+        <input class="submit" type="submit" value="上傳修改後的產品資訊" >
+    </div>
+
+</div>

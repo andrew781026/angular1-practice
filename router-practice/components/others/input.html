@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查牌價系統-上傳EXCEL</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+    <script>
+        var uploadApp = angular.module('uploadApp',[]);
+        uploadApp.controller('MainCtrl',[function () {
+            var self = this ;
+            self.inputDate = {
+                value: new Date(2013, 9, 22)
+            };
+            self.dateChange = function () {
+                console.log('ctrl.inputDate.value = ',self.inputDate.value);
+            };
+        }]);
+    </script>
+
+    <script>
+        $( document ).ready(function() {
+
+            // Handler for .ready() called.
+            $('#fileToUpload').on('change',function () {
+                console.log('change!!');
+
+                var ext = this.value.match(/\.([^\.]+)$/)[1];
+                switch(ext){
+                    case 'xls':
+                    case 'xlsx':
+                        break;
+                    default:
+                        alert('請選擇EXCEL檔案');
+                        this.value='';
+                }
+
+            });
+
+            // Handler for .ready() called.
+            $('#uploadFile').on('click',function () {
+                console.log('click!!');
+
+                var formData = new FormData();
+                jQuery.each(jQuery('#fileToUpload')[0].files, function(i, file) {
+                    formData.append('files', file);
+                    // console.log('file-'+i);
+                });
+
+                // console.log('data.get(file-0)',formData.get('file-0'));
+                // console.log('data.entries()',formData.entries());
+                // var iter = formData.entries();
+                // console.log('iter.next()-1',iter.next());
+                // console.log('iter.next()-2',iter.next());
+                // console.log('iter.next()-3',iter.next());
+                // console.log('iter.next()-4',iter.next());
+
+
+                jQuery.ajax({
+                    url: '/uploadMulti.do',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(data){
+                        // window.location.href = '/uploadStatus.do';
+
+                        var a = document.createElement('a');
+                        var url = window.URL.createObjectURL(data);
+                        a.href = url;
+                        a.download = 'myfile.pdf';
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                    }
+                });
+
+            });
+
+        });
+
+    </script>
+
+
+</head>
+<body ng-app="uploadApp">
+
+    <h1>第1階段 - 上傳EXCEL</h1>
+
+    <br/><br/>
+
+    <div style="background-color: #1AFF19" ng-controller="MainCtrl as ctrl">
+        <form action="/upload.do" method="post" enctype="multipart/form-data" >
+            資料日期：<input type="date" ng-model="ctrl.inputDate.value" ng-change="ctrl.dateChange()" /><br/>
+            請選擇EXCEL上傳:<br/>
+
+            <input type="file" name="fileToUpload" id="fileToUpload" accept=".xls,.xlsx" multiple><br/><br/>
+            <input type="submit" value="下一步" name="submit">
+
+        </form>
+        <button id="uploadFile">上傳檔案</button>
+    </div>
+
+
+</body>
+</html>

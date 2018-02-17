@@ -1,0 +1,18 @@
+<div >
+    <h1>第1階段 - 上傳EXCEL</h1>
+
+    <br/>
+
+    <div style="background-color: #1AFF19" >
+        <form action="./upload.do" method="post" enctype="multipart/form-data" >
+            資料日期：<input type="date" ng-model="$ctrl.inputDate.value" ng-change="$ctrl.dateChange()" /><br/>
+            請選擇EXCEL上傳:<br/>
+
+            <input type="file" name="fileToUpload" id="fileToUpload" accept=".xls,.xlsx" multiple><br/><br/>
+            <input type="submit" value="下一步" name="submit">
+
+        </form>
+        <a ng-link="['ChooseSheetLink']" class="btn btn-info" role="button">上傳檔案</a>
+    </div>
+    <!-- <ng-outlet></ng-outlet> -->
+</div>
